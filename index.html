@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillChain - Blockchain Skill Verification Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                        <span class="text-2xl">&#x1F517;</span>
+                    </div>
+                    <h1 class="text-2xl font-bold">SkillChain</h1>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <button onclick="showPage('homePage')" class="hover:text-blue-200 transition-colors">Home</button>
+                    <button onclick="showPage('skillsPage')" class="hover:text-blue-200 transition-colors">Skills</button>
+                    <button onclick="showPage('verificationPage')" class="hover:text-blue-200 transition-colors">Verification</button>
+                    <button onclick="showPage('nftPage')" class="hover:text-blue-200 transition-colors">NFT Profile</button>
+                    <button onclick="showPage('employersPage')" class="hover:text-blue-200 transition-colors">For Employers</button>
+                </div>
+                <div class="flex space-x-3">
+                    <button id="loginBtn" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">Login</button>
+                    <button id="registerBtn" class="bg-purple-800 px-4 py-2 rounded-lg font-semibold hover:bg-purple-900 transition-colors">Register</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div id="mainContent">
+        <!-- Home Page -->
+        <div id="homePage" class="page active">
+            <section class="gradient-bg text-white py-20">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-5xl font-bold mb-6">Verify Your Skills on Blockchain</h2>
+                    <p class="text-xl mb-8 max-w-3xl mx-auto">Get verified NFT certificates for your skills. Build trust with employers through blockchain-verified credentials that can't be faked.</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <button id="getStartedBtn" class="bg-white text-purple-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors">Get Started</button>
+                        <button onclick="showPage('skillsPage')" class="bg-purple-800 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-purple-900 transition-colors">Browse Skills</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Overview -->
+            <section class="py-16">
+                <div class="container mx-auto px-6">
+                    <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">How SkillChain Works</h3>
+                    <div class="grid md:grid-cols-4 gap-8">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-3xl">&#x1F464;</span>
+                            </div>
+                            <h4 class="text-xl font-semibold mb-2">Register &amp; Profile</h4>
+                            <p class="text-gray-600">Create your account and complete your professional profile</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-3xl">&#x1F3AF;</span>
+                            </div>
+                            <h4 class="text-xl font-semibold mb-2">Choose Skills</h4>
+                            <p class="text-gray-600">Select from Tech, Medical, Finance, and other skill categories</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-3xl">&#x2705;</span>
+                            </div>
+                            <h4 class="text-xl font-semibold mb-2">Get Verified</h4>
+                            <p class="text-gray-600">Complete AI tests, peer reviews, and certificate uploads</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-3xl">&#x1F3C6;</span>
+                            </div>
+                            <h4 class="text-xl font-semibold mb-2">Mint NFT</h4>
+                            <p class="text-gray-600">Get blockchain-verified NFT badges for your skills</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Skills Page -->
+        <div id="skillsPage" class="page">
+            <section class="py-16">
+                <div class="container mx-auto px-6">
+                    <!-- Skills Header -->
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-bold mb-4 text-gray-800">Complete Skill Verification System</h2>
+                        <p class="text-xl text-gray-600">Choose from 100+ skills across 8 categories &bull; AI-powered tests &bull; Blockchain NFT certificates</p>
+
+                        <!-- User Progress Overview -->
+                        <div id="userProgressOverview" class="mt-8 bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl max-w-6xl mx-auto">
+                            <div class="grid md:grid-cols-6 gap-4 text-center">
+                                <div>
+                                    <div class="text-2xl font-bold text-blue-600" id="totalSkillsCompleted">0</div>
+                                    <div class="text-sm text-gray-600">Skills Verified</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-green-600" id="totalNFTsMinted">0</div>
+                                    <div class="text-sm text-gray-600">NFTs Minted</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-purple-600" id="overallTrustScore">0</div>
+                                    <div class="text-sm text-gray-600">Trust Score</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-orange-600" id="totalEarnings">&#x20B9;0</div>
+                                    <div class="text-sm text-gray-600">Total Earnings</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-red-600" id="projectsCompleted">0</div>
+                                    <div class="text-sm text-gray-600">Projects Done</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-indigo-600" id="nextRecommendation">-</div>
+                                    <div class="text-sm text-gray-600">AI Suggestion</div>
+                                </div>
+                            </div>
+
+                            <!-- AI Insights Panel -->
+                            <div class="mt-6 bg-white p-4 rounded-lg border-2 border-dashed border-orange-300">
+                                <div class="flex items-center justify-between mb-3">
+                                    <h4 class="font-semibold text-orange-800">&#x1F916; AI Career Insights</h4>
+                                    <button onclick="refreshAIInsights()" class="text-orange-600 hover:text-orange-800 text-sm">Refresh</button>
+                                </div>
+                                <div id="aiCareerInsights" class="grid md:grid-cols-3 gap-4 text-sm">
+                                    <div class="bg-orange-50 p-3 rounded-lg">
+                                        <div class="font-semibold text-orange-800">Market Trend</div>
+                                        <div class="text-orange-600">AI/ML skills demand up 127%</div>
+                                    </div>
+                                    <div class="bg-green-50 p-3 rounded-lg">
+                                        <div class="font-semibold text-green-800">Salary Potential</div>
+                                        <div class="text-green-600">Your skills: &#x20B9;12-18 LPA range</div>
+                                    </div>
+                                    <div class="bg-blue-50 p-3 rounded-lg">
+                                        <div class="font-semibold text-blue-800">Next Step</div>
+                                        <div class="text-blue-600">Learn React.js for +40% salary</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Categories Grid -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                        <!-- Tech Skills -->
+                        <div class="skill-category card-hover bg-white p-6 rounded-xl shadow-lg cursor-pointer border-2 border-transparent hover:border-blue-500" data-skill="tech" onclick="selectSkillCategory('tech')">
+                            <div class="text-4xl mb-4">&#x1F4BB;</div>
+                            <h4 class="text-xl font-semibold mb-2">Tech Skills</h4>
+                            <p class="text-gray-600 mb-4">Programming, Web Dev, AI/ML, Blockchain</p>
+                            <div class="text-sm text-blue-600 mb-3">17 Skills Available</div>
+                            <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors">Explore Tech</button>
+                        </div>
+
+                        <!-- Non-Tech Skills -->
+                        <div class="skill-category card-hover bg-white p-6 rounded-xl shadow-lg cursor-pointer border-2 border-transparent hover:border-green-500" data-skill="nontech" onclick="selectSkillCategory('nontech')">
+                            <div class="text-4xl mb-4">&#x1F91D;</div>
+                            <h4 class="text-xl font-semibold mb-2">Non-Tech Skills</h4>
+                            <p class="text-gray-600 mb-4">Communication, Leadership, Management</p>
+                            <div class="text-sm text-green-600 mb-3">12 Skills Available</div>
+                            <button class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition-colors">Explore Non-Tech</button>
+                        </div>
+
+                        <!-- Design / Creative -->
+                        <div class="skill-category card-hover bg-white p-6 rounded-xl shadow-lg cursor-pointer border-2 border-transparent hover:border-purple-500" data-skill="creative" onclick="selectSkillCategory('creative')">
+                            <div class="text-4xl mb-4">&#x1F3A8;</div>
+                            <h4 class="text-xl font-semibold mb-2">Design / Creative</h4>
+                            <p class="text-gray-600 mb-4">UI-UX, Graphic Design, Animation</p>
+                            <div class="text-sm text-purple-600 mb-3">12 Skills Available</div>
+                            <button class="w-full bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600 transition-colors">Explore Creative</button>
+                        </div>
+
+                        <!-- Corporate / Business -->
+                        <div class="skill-category card-hover bg-white p-6 rounded-xl shadow-lg cursor-pointer border-2 border-transparent hover:border-orange-500" data-skill="business" onclick="selectSkillCategory('business')">
+                            <div class="text-4xl mb-4">&#x1F3E2;</div>
+                            <h4 class="text-xl font-semibold mb-2">Corporate / Business</h4>
+                            <p class="text-gray-600 mb-4">Marketing, Finance, HR</p>
+                            <div class="text-sm text-orange-600 mb-3">12 Skills Available</div>
+                            <button class="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition-colors">Explore Business</button>
+                        </div>
+
+                        <!-- Medical / Healthcare -->
+                        <div class="skill-category card-hover bg-white p-6 rounded-xl shadow-lg cursor-pointer border-2 border-transparent hover:border-red-500" data-skill="medical" onclick="selectSkillCategory('medical')">
+                            <div class="text-4xl mb-4">&#x1F3E5;</div>
+                            <h4 class="text-xl font-semibold mb-2">Medical / Healthcare</h4>
+                            <p class="text-gray-600 mb-4">Nursing, Diagnostics, Psychology</p>
+                            <div class="text-sm text-red-600 mb-3">11 Skills Available</div>
+                            <button class="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition-colors">Explore Medical</button>
+                        </div>
+
+                        <!-- Hobbies -->
+                        <div class="skill-category card-hover bg-white p-6 rounded-xl shadow-lg cursor-pointer border-2 border-transparent hover:border-pink-500" data-skill="hobbies" onclick="selectSkillCategory('hobbies')">
+                            <div class="text-4xl mb-4">&#x1F3AD;</div>
+                            <h4 class="text-xl font-semibold mb-2">Hobbies</h4>
+                            <p class="text-gray-600 mb-4">Music, Photography, Content Creation</p>
+                            <div class="text-sm text-pink-600 mb-3">13 Skills Available</div>
+                            <button class="w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-600 transition-colors">Explore Hobbies</button>
+                        </div>
+                    </div>
+
+                    <!-- Selected Category Skills -->
+                    <div id="categorySkills" class="hidden bg-white p-8 rounded-xl shadow-lg mb-8">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-2xl font-bold">Skills in <span id="selectedCategoryName"></span></h3>
+                            <button onclick="hideCategorySkills()" class="text-gray-500 hover:text-gray-700">&#x2715; Close</button>
+                        </div>
+                        <div id="skillsList" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        </div>
+                    </div>
+
+                    <!-- Individual Skill Details -->
+                    <div id="skillDetails" class="hidden bg-white p-8 rounded-xl shadow-lg">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2">Skill: <span id="selectedSkillName"></span></h3>
+                                <div class="flex items-center space-x-4">
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm" id="skillDifficulty">Intermediate</span>
+                                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm" id="skillDuration">15 mins test</span>
+                                    <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm" id="skillDemand">High Demand</span>
+                                </div>
+                            </div>
+                            <button onclick="hideSkillDetails()" class="text-gray-500 hover:text-gray-700">&#x2715; Close</button>
+                        </div>
+
+                        <div class="grid lg:grid-cols-3 gap-8">
+                            <!-- Test Overview -->
+                            <div class="lg:col-span-2">
+                                <h4 class="text-lg font-semibold mb-4">&#x1F916; AI-Powered Test Overview</h4>
+                                <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                        <div>
+                                            <div class="font-semibold text-blue-800">Test Format:</div>
+                                            <div class="text-blue-600" id="testFormat">20 Multiple Choice Questions</div>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-blue-800">Time Limit:</div>
+                                            <div class="text-blue-600" id="testTime">15 minutes</div>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-blue-800">Pass Score:</div>
+                                            <div class="text-blue-600" id="passScore">70%</div>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-blue-800">Retake Policy:</div>
+                                            <div class="text-blue-600">Unlimited attempts</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Test Topics -->
+                                <h5 class="font-semibold mb-3">&#x1F4CB; Test Topics Covered:</h5>
+                                <ul id="testTopics" class="space-y-2 text-gray-600 mb-6">
+                                </ul>
+
+                                <!-- External Validation Options -->
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-green-800 mb-3">&#x1F4DC; External Validation (Optional)</h5>
+                                    <p class="text-green-600 text-sm mb-3">Upload certificates from recognized platforms for additional verification</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="bg-white px-3 py-1 rounded-full text-xs border">Coursera</span>
+                                        <span class="bg-white px-3 py-1 rounded-full text-xs border">Udemy</span>
+                                        <span class="bg-white px-3 py-1 rounded-full text-xs border">LinkedIn Learning</span>
+                                        <span class="bg-white px-3 py-1 rounded-full text-xs border">Google Certificates</span>
+                                        <span class="bg-white px-3 py-1 rounded-full text-xs border">University Degrees</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Panel -->
+                            <div>
+                                <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl">
+                                    <h5 class="font-semibold mb-4">&#x1F680; Start Your Journey</h5>
+
+                                    <!-- Progress if already started -->
+                                    <div id="skillProgress" class="hidden mb-4">
+                                        <div class="text-sm text-gray-600 mb-2">Your Progress:</div>
+                                        <div class="bg-white rounded-full h-2 mb-2">
+                                            <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style="width: 0%" id="progressBar"></div>
+                                        </div>
+                                        <div class="text-xs text-gray-500" id="progressText">0% Complete</div>
+                                    </div>
+
+                                    <!-- Action Buttons -->
+                                    <div class="space-y-3">
+                                        <button id="startTestBtn" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all">
+                                            &#x1F3AF; Start AI Test
+                                        </button>
+
+                                        <button id="uploadCertBtn" class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-3 rounded-lg font-semibold hover:from-green-600 hover:to-green-700 transition-all">
+                                            &#x1F4C4; Upload Certificate
+                                        </button>
+
+                                        <button id="viewSampleBtn" class="w-full bg-gray-100 text-gray-700 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+                                            &#x1F441;&#xFE0F; View Sample Questions
+                                        </button>
+                                    </div>
+
+                                    <!-- NFT Preview -->
+                                    <div class="mt-6 p-4 bg-white rounded-lg border-2 border-dashed border-purple-300">
+                                        <div class="text-center">
+                                            <div class="text-3xl mb-2">&#x1F3C6;</div>
+                                            <div class="text-sm font-semibold text-purple-800">NFT Badge Preview</div>
+                                            <div class="text-xs text-purple-600" id="nftPreviewText">Complete test to mint your NFT</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- AI Recommendations -->
+                                <div class="mt-6 bg-orange-50 p-4 rounded-lg">
+                                    <h6 class="font-semibold text-orange-800 mb-2">&#x1F916; AI Recommendations</h6>
+                                    <div id="aiRecommendations" class="text-sm text-orange-600">
+                                        Based on market trends, this skill has 85% job growth potential.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Skill Progress Dashboard -->
+                    <div id="skillProgressDashboard" class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6">&#x1F4CA; Your Skill Progress Dashboard</h3>
+
+                        <!-- Progress Overview Stats -->
+                        <div class="grid md:grid-cols-4 gap-6 mb-8">
+                            <div class="text-center p-4 bg-blue-50 rounded-lg">
+                                <div class="text-3xl font-bold text-blue-600" id="dashboardSkillsCompleted">0</div>
+                                <div class="text-sm text-blue-800">Skills Completed</div>
+                                <div class="text-xs text-blue-600 mt-1">+2 this week</div>
+                            </div>
+                            <div class="text-center p-4 bg-green-50 rounded-lg">
+                                <div class="text-3xl font-bold text-green-600" id="dashboardNFTsMinted">0</div>
+                                <div class="text-sm text-green-800">NFT Badges</div>
+                                <div class="text-xs text-green-600 mt-1">Blockchain verified</div>
+                            </div>
+                            <div class="text-center p-4 bg-purple-50 rounded-lg">
+                                <div class="text-3xl font-bold text-purple-600" id="dashboardTrustScore">0</div>
+                                <div class="text-sm text-purple-800">Trust Score</div>
+                                <div class="text-xs text-purple-600 mt-1">Industry average: 75</div>
+                            </div>
+                            <div class="text-center p-4 bg-orange-50 rounded-lg">
+                                <div class="text-3xl font-bold text-orange-600" id="dashboardStreak">0</div>
+                                <div class="text-sm text-orange-800">Day Streak</div>
+                                <div class="text-xs text-orange-600 mt-1">Keep learning!</div>
+                            </div>
+                        </div>
+
+                        <!-- Level Badges System -->
+                        <div class="mb-8 p-6 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl">
+                            <h4 class="text-lg font-semibold mb-4 text-orange-800">&#x1F3C5; Your Skill Levels</h4>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div class="text-center">
+                                    <div class="text-4xl mb-2">&#x1F949;</div>
+                                    <div class="font-semibold text-yellow-800">Beginner</div>
+                                    <div class="text-sm text-yellow-600" id="beginnerCount">0 skills</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-4xl mb-2">&#x1F948;</div>
+                                    <div class="font-semibold text-gray-800">Intermediate</div>
+                                    <div class="text-sm text-gray-600" id="intermediateCount">0 skills</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-4xl mb-2">&#x1F947;</div>
+                                    <div class="font-semibold text-yellow-800">Expert</div>
+                                    <div class="text-sm text-yellow-600" id="expertCount">0 skills</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid lg:grid-cols-3 gap-8">
+                            <!-- In Progress Skills -->
+                            <div>
+                                <h4 class="text-lg font-semibold mb-4 text-blue-600 flex items-center">
+                                    <span class="mr-2">&#x1F504;</span>
+                                    In Progress
+                                    <span class="ml-2 bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs" id="inProgressCount">0</span>
+                                </h4>
+                                <div id="inProgressSkills" class="space-y-3">
+                                    <div class="text-center text-gray-500 py-8">
+                                        <div class="text-4xl mb-2">&#x1F3AF;</div>
+                                        <p>No skills in progress</p>
+                                        <p class="text-sm">Start a test to see progress here</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Completed Skills -->
+                            <div>
+                                <h4 class="text-lg font-semibold mb-4 text-green-600 flex items-center">
+                                    <span class="mr-2">&#x2705;</span>
+                                    Completed
+                                    <span class="ml-2 bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs" id="completedCount">0</span>
+                                </h4>
+                                <div id="completedSkills" class="space-y-3">
+                                    <div class="text-center text-gray-500 py-8">
+                                        <div class="text-4xl mb-2">&#x1F3C6;</div>
+                                        <p>No completed skills yet</p>
+                                        <p class="text-sm">Complete tests to earn NFT badges</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI Recommended Skills -->
+                            <div>
+                                <h4 class="text-lg font-semibold mb-4 text-purple-600 flex items-center">
+                                    <span class="mr-2">&#x1F4A1;</span>
+                                    AI Recommended
+                                    <span class="ml-2 bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">Smart</span>
+                                </h4>
+                                <div id="recommendedSkills" class="space-y-3">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Upgrade Options -->
+                        <div class="mt-8 p-6 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl">
+                            <h4 class="text-lg font-semibold mb-4 text-indigo-800">&#x1F680; Upgrade Your Skills</h4>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h5 class="font-semibold text-indigo-800 mb-2">Next Level Challenge</h5>
+                                    <p class="text-sm text-indigo-600 mb-3">Take advanced tests to upgrade your existing skill badges</p>
+                                    <button class="w-full bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 transition-colors text-sm">
+                                        View Upgrade Options
+                                    </button>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h5 class="font-semibold text-purple-800 mb-2">AI Skill Suggestions</h5>
+                                    <p class="text-sm text-purple-600 mb-3" id="aiSuggestionText">Based on your profile, we recommend learning React.js next</p>
+                                    <button class="w-full bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600 transition-colors text-sm">
+                                        Start Suggested Skill
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Verification Page -->
+        <div id="verificationPage" class="page">
+            <section class="py-16">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-bold mb-4 text-gray-800">Skill Verification Process</h2>
+                        <p class="text-xl text-gray-600">Choose your verification path to earn NFT badges</p>
+                    </div>
+
+                    <!-- Verification Path Selection -->
+                    <div class="max-w-6xl mx-auto mb-12">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <!-- Path 1: AI Test + Mentor Review -->
+                            <div class="verification-path bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl shadow-lg border-2 border-transparent hover:border-blue-500 transition-all cursor-pointer" onclick="selectVerificationPath('aitest')">
+                                <div class="text-center mb-6">
+                                    <div class="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <span class="text-white text-3xl">&#x1F916;</span>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-blue-800 mb-2">AI Test Path</h3>
+                                    <p class="text-blue-600">Take AI assessment + Get mentor review</p>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
+                                        <div>
+                                            <div class="font-semibold text-blue-800">AI Assessment Test</div>
+                                            <div class="text-sm text-blue-600">15-25 questions &bull; 15-20 mins &bull; 70% pass</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
+                                        <div>
+                                            <div class="font-semibold text-green-800">Mentor Review</div>
+                                            <div class="text-sm text-green-600">Industry expert validation &bull; 24-48 hours</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
+                                        <div>
+                                            <div class="font-semibold text-purple-800">NFT Badge Minted</div>
+                                            <div class="text-sm text-purple-600">Blockchain verified skill certificate</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="w-full mt-6 bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors">
+                                    Choose AI Test Path
+                                </button>
+                            </div>
+
+                            <!-- Path 2: Certificate Upload + Mentor Verification -->
+                            <div class="verification-path bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-xl shadow-lg border-2 border-transparent hover:border-green-500 transition-all cursor-pointer" onclick="selectVerificationPath('certificate')">
+                                <div class="text-center mb-6">
+                                    <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <span class="text-white text-3xl">&#x1F4DC;</span>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-green-800 mb-2">Certificate Path</h3>
+                                    <p class="text-green-600">Upload existing certificates + Get verified</p>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
+                                        <div>
+                                            <div class="font-semibold text-green-800">Upload Certificate</div>
+                                            <div class="text-sm text-green-600">Coursera, Udemy, Google, AWS, etc.</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
+                                        <div>
+                                            <div class="font-semibold text-blue-800">Mentor Verification</div>
+                                            <div class="text-sm text-blue-600">Expert validates your certificate &bull; 12-24 hours</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
+                                        <div>
+                                            <div class="font-semibold text-purple-800">Enhanced NFT Badge</div>
+                                            <div class="text-sm text-purple-600">Certificate + Skill NFT verified</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="w-full mt-6 bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+                                    Choose Certificate Path
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Test Path Flow -->
+                    <div id="aitestFlow" class="max-w-6xl mx-auto hidden">
+                        <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
+                            <h3 class="text-2xl font-bold mb-6 text-center text-blue-800">&#x1F916; AI Test Verification Path</h3>
+
+                            <!-- Progress Tracker -->
+                            <div class="flex items-center justify-center mb-8">
+                                <div class="flex items-center">
+                                    <div id="aitest-step1" class="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-semibold">1</div>
+                                    <span class="ml-2 font-semibold text-blue-800">AI Test</span>
+                                </div>
+                                <div class="flex-1 h-2 bg-gray-200 mx-4 max-w-32">
+                                    <div id="aitest-progress1" class="h-full bg-blue-500 transition-all duration-500" style="width: 0%"></div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div id="aitest-step2" class="w-10 h-10 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center font-semibold">2</div>
+                                    <span class="ml-2 text-gray-600">Mentor Review</span>
+                                </div>
+                                <div class="flex-1 h-2 bg-gray-200 mx-4 max-w-32">
+                                    <div id="aitest-progress2" class="h-full bg-green-500 transition-all duration-500" style="width: 0%"></div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div id="aitest-step3" class="w-10 h-10 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center font-semibold">3</div>
+                                    <span class="ml-2 text-gray-600">NFT Badge</span>
+                                </div>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <!-- Current Step Info -->
+                                <div id="aitestCurrentStep">
+                                    <h4 class="text-lg font-semibold mb-4 text-blue-800">Step 1: AI Assessment Test</h4>
+                                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                                        <ul class="space-y-2 text-blue-700 text-sm">
+                                            <li>&bull; <strong>Questions:</strong> 15-25 based on skill level</li>
+                                            <li>&bull; <strong>Duration:</strong> 15-20 minutes</li>
+                                            <li>&bull; <strong>Pass Score:</strong> 70% minimum</li>
+                                            <li>&bull; <strong>Topics:</strong> Practical skills &amp; best practices</li>
+                                            <li>&bull; <strong>Retakes:</strong> Unlimited attempts</li>
+                                        </ul>
+                                    </div>
+                                    <button id="startAITestBtn" class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors">
+                                        &#x1F3AF; Start AI Assessment
+                                    </button>
+                                </div>
+
+                                <!-- What Happens Next -->
+                                <div>
+                                    <h4 class="text-lg font-semibold mb-4 text-green-800">What Happens Next?</h4>
+                                    <div class="space-y-4">
+                                        <div class="flex items-start space-x-3">
+                                            <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold mt-1">&#x2713;</div>
+                                            <div>
+                                                <div class="font-semibold text-green-800">Pass AI Test (70%+)</div>
+                                                <div class="text-sm text-green-600">Get instant results and feedback</div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start space-x-3">
+                                            <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold mt-1">&#x1F468;&#x200D;&#x1F3EB;</div>
+                                            <div>
+                                                <div class="font-semibold text-blue-800">Mentor Review Process</div>
+                                                <div class="text-sm text-blue-600">Industry expert validates your knowledge</div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start space-x-3">
+                                            <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold mt-1">&#x1F3C6;</div>
+                                            <div>
+                                                <div class="font-semibold text-purple-800">NFT Badge Minted</div>
+                                                <div class="text-sm text-purple-600">Blockchain certificate ready to share</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificate Path Flow -->
+                    <div id="certificateFlow" class="max-w-6xl mx-auto hidden">
+                        <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
+                            <h3 class="text-2xl font-bold mb-6 text-center text-green-800">&#x1F4DC; Certificate Verification Path</h3>
+
+                            <!-- Progress Tracker -->
+                            <div class="flex items-center justify-center mb-8">
+                                <div class="flex items-center">
+                                    <div id="cert-step1" class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center font-semibold">1</div>
+                                    <span class="ml-2 font-semibold text-green-800">Upload</span>
+                                </div>
+                                <div class="flex-1 h-2 bg-gray-200 mx-4 max-w-32">
+                                    <div id="cert-progress1" class="h-full bg-green-500 transition-all duration-500" style="width: 0%"></div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div id="cert-step2" class="w-10 h-10 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center font-semibold">2</div>
+                                    <span class="ml-2 text-gray-600">Verification</span>
+                                </div>
+                                <div class="flex-1 h-2 bg-gray-200 mx-4 max-w-32">
+                                    <div id="cert-progress2" class="h-full bg-blue-500 transition-all duration-500" style="width: 0%"></div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div id="cert-step3" class="w-10 h-10 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center font-semibold">3</div>
+                                    <span class="ml-2 text-gray-600">Enhanced NFT</span>
+                                </div>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <!-- Upload Section -->
+                                <div id="certificateCurrentStep">
+                                    <h4 class="text-lg font-semibold mb-4 text-green-800">Step 1: Upload Your Certificate</h4>
+
+                                    <!-- Supported Platforms -->
+                                    <div class="bg-green-50 p-4 rounded-lg mb-4">
+                                        <h5 class="font-semibold text-green-800 mb-3">&#x2705; Supported Platforms:</h5>
+                                        <div class="grid grid-cols-2 gap-2 text-sm">
+                                            <div class="flex items-center space-x-2">
+                                                <span class="w-4 h-4 bg-blue-500 rounded"></span>
+                                                <span class="text-green-700">Coursera</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="w-4 h-4 bg-orange-500 rounded"></span>
+                                                <span class="text-green-700">Udemy</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="w-4 h-4 bg-blue-600 rounded"></span>
+                                                <span class="text-green-700">LinkedIn Learning</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="w-4 h-4 bg-red-500 rounded"></span>
+                                                <span class="text-green-700">Google Certificates</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="w-4 h-4 bg-yellow-500 rounded"></span>
+                                                <span class="text-green-700">AWS Certifications</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="w-4 h-4 bg-purple-500 rounded"></span>
+                                                <span class="text-green-700">Microsoft Learn</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="w-4 h-4 bg-indigo-500 rounded"></span>
+                                                <span class="text-green-700">IBM Badges</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="w-4 h-4 bg-gray-600 rounded"></span>
+                                                <span class="text-green-700">University Degrees</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="space-y-3">
+                                        <div class="text-sm text-green-600">
+                                            <p>&bull; <strong>Formats:</strong> PDF, JPG, PNG</p>
+                                            <p>&bull; <strong>Max Size:</strong> 10MB per file</p>
+                                            <p>&bull; <strong>Multiple:</strong> Upload up to 5 certificates</p>
+                                        </div>
+                                        <button id="uploadCertificateBtn" class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+                                            &#x1F4C4; Upload Certificate(s)
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Benefits Section -->
+                                <div>
+                                    <h4 class="text-lg font-semibold mb-4 text-blue-800">Enhanced NFT Benefits</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-blue-50 p-4 rounded-lg">
+                                            <h5 class="font-semibold text-blue-800 mb-2">&#x1F3C6; Dual Verification</h5>
+                                            <p class="text-blue-600 text-sm">Your NFT will show both the original certificate AND SkillChain verification</p>
+                                        </div>
+                                        <div class="bg-purple-50 p-4 rounded-lg">
+                                            <h5 class="font-semibold text-purple-800 mb-2">&#x2B50; Higher Trust Score</h5>
+                                            <p class="text-purple-600 text-sm">Certificate-backed NFTs get 95-100 trust scores vs 85-95 for test-only</p>
+                                        </div>
+                                        <div class="bg-orange-50 p-4 rounded-lg">
+                                            <h5 class="font-semibold text-orange-800 mb-2">&#x1F680; Premium Badge</h5>
+                                            <p class="text-orange-600 text-sm">Special "Certificate Verified" badge on your NFT and profile</p>
+                                        </div>
+                                        <div class="bg-green-50 p-4 rounded-lg">
+                                            <h5 class="font-semibold text-green-800 mb-2">&#x1F4BC; Employer Preferred</h5>
+                                            <p class="text-green-600 text-sm">Employers see both your learning source and blockchain verification</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Back to Selection Button -->
+                    <div id="backToSelection" class="text-center hidden">
+                        <button onclick="showVerificationSelection()" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">
+                            &larr; Back to Path Selection
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- NFT Profile Page -->
+        <div id="nftPage" class="page">
+            <section class="py-16">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-bold mb-4 text-gray-800">Your NFT Skill Badges</h2>
+                        <p class="text-xl text-gray-600">Blockchain-verified credentials that employers can trust</p>
+                    </div>
+
+                    <!-- User Profile Summary -->
+                    <div class="max-w-4xl mx-auto mb-12">
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <div class="flex items-center space-x-6">
+                                <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                                    <span id="userInitials">JD</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-2xl font-bold mb-2" id="userName">Onkar Garde</h3>
+                                    <p class="text-gray-600 mb-2" id="userTitle">Full Stack Developer</p>
+                                    <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                        <span>&#x1F3C6; <span id="badgeCount">3</span> NFT Badges</span>
+                                        <span>&#x2B50; Trust Score: <span id="trustScore">95</span>/100</span>
+                                        <span>&#x1F517; Wallet: <span id="userWallet">0x1234...5678</span></span>
+                                    </div>
+                                </div>
+                                <button onclick="showPage('verificationPage')" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors">
+                                    Add New Skill
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NFT Gallery -->
+                    <div class="max-w-6xl mx-auto">
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="nftGallery">
+                        </div>
+
+                        <!-- Enhanced NFT Minting Section -->
+                        <div class="text-center mt-12">
+                            <div class="bg-gradient-to-r from-purple-100 to-pink-100 p-8 rounded-xl">
+                                <h3 class="text-2xl font-bold mb-4">&#x1F3C6; NFT Minting Interface</h3>
+                                <p class="text-gray-600 mb-6">Transform your verified skills into blockchain NFT certificates</p>
+
+                                <!-- NFT Preview Card -->
+                                <div class="max-w-md mx-auto mb-6 bg-white p-6 rounded-xl shadow-lg nft-glow">
+                                    <div class="text-center">
+                                        <div class="text-6xl mb-4">&#x1F3AF;</div>
+                                        <h4 class="text-xl font-semibold mb-2" id="nftPreviewSkill">Select a Skill</h4>
+                                        <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm mb-3" id="nftPreviewLevel">Verified Professional</div>
+                                        <div class="space-y-1 text-sm text-gray-600">
+                                            <p>Blockchain: Ethereum</p>
+                                            <p>Standard: ERC-721</p>
+                                            <p>Storage: IPFS</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Wallet Connection -->
+                                <div class="mb-6">
+                                    <div class="flex items-center justify-center space-x-4 mb-4">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-gray-300 rounded-full" id="walletStatus"></div>
+                                            <span class="text-sm text-gray-600" id="walletText">Wallet Not Connected</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid md:grid-cols-2 gap-4 max-w-md mx-auto">
+                                        <button id="connectMetaMask" class="bg-orange-500 text-white px-4 py-3 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center space-x-2">
+                                            <span>&#x1F98A;</span>
+                                            <span>MetaMask</span>
+                                        </button>
+                                        <button id="connectWalletConnect" class="bg-blue-500 text-white px-4 py-3 rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center space-x-2">
+                                            <span>&#x1F517;</span>
+                                            <span>WalletConnect</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Minting Actions -->
+                                <div class="space-y-4">
+                                    <button id="mintNFTBtn" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all nft-glow disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                        &#x1F3AF; Mint Skill NFT Badge
+                                    </button>
+
+                                    <div class="text-sm text-gray-500">
+                                        <p>Gas Fee: ~0.005 ETH &bull; Minting Fee: Free</p>
+                                        <p>Your NFT will be stored on IPFS and verified on Ethereum blockchain</p>
+                                    </div>
+                                </div>
+
+                                <!-- Transaction Status -->
+                                <div id="transactionStatus" class="hidden mt-6 p-4 bg-blue-50 rounded-lg">
+                                    <div class="flex items-center justify-center space-x-2 mb-2">
+                                        <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                                        <span class="text-blue-800 font-semibold">Minting in Progress...</span>
+                                    </div>
+                                    <p class="text-blue-600 text-sm">Transaction Hash: <span id="txHash" class="font-mono">0x...</span></p>
+                                    <button id="viewOnExplorer" class="mt-2 text-blue-600 hover:text-blue-800 text-sm underline">View on Etherscan</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings & Payment Dashboard -->
+                        <div class="mt-12 bg-white p-8 rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-6 text-center">&#x1F4B0; Earnings Dashboard</h3>
+
+                            <!-- Earnings Overview -->
+                            <div class="grid md:grid-cols-4 gap-6 mb-8">
+                                <div class="text-center p-4 bg-green-50 rounded-lg">
+                                    <div class="text-2xl font-bold text-green-600" id="totalEarningsDisplay">&#x20B9;0</div>
+                                    <div class="text-sm text-green-800">Total Earned</div>
+                                </div>
+                                <div class="text-center p-4 bg-blue-50 rounded-lg">
+                                    <div class="text-2xl font-bold text-blue-600" id="pendingPayments">&#x20B9;0</div>
+                                    <div class="text-sm text-blue-800">Pending</div>
+                                </div>
+                                <div class="text-center p-4 bg-purple-50 rounded-lg">
+                                    <div class="text-2xl font-bold text-purple-600" id="monthlyEarnings">&#x20B9;0</div>
+                                    <div class="text-sm text-purple-800">This Month</div>
+                                </div>
+                                <div class="text-center p-4 bg-orange-50 rounded-lg">
+                                    <div class="text-2xl font-bold text-orange-600" id="avgProjectValue">&#x20B9;0</div>
+                                    <div class="text-sm text-orange-800">Avg Project</div>
+                                </div>
+                            </div>
+
+                            <!-- Payment Methods -->
+                            <div class="mb-8">
+                                <h4 class="text-lg font-semibold mb-4">&#x1F4B3; Payment Methods</h4>
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <div class="border-2 border-green-300 bg-green-50 p-4 rounded-lg">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="font-semibold text-green-800">&#x1F517; Crypto Wallet</span>
+                                            <span class="text-green-600 text-sm">Connected</span>
+                                        </div>
+                                        <div class="text-sm text-green-600">Instant payments via smart contracts</div>
+                                    </div>
+                                    <div class="border-2 border-gray-300 bg-gray-50 p-4 rounded-lg">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="font-semibold text-gray-800">&#x1F3E6; Bank Account</span>
+                                            <button class="text-blue-600 text-sm hover:text-blue-800">Add</button>
+                                        </div>
+                                        <div class="text-sm text-gray-600">Traditional bank transfers</div>
+                                    </div>
+                                    <div class="border-2 border-gray-300 bg-gray-50 p-4 rounded-lg">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="font-semibold text-gray-800">&#x1F4B0; UPI/PayPal</span>
+                                            <button class="text-blue-600 text-sm hover:text-blue-800">Add</button>
+                                        </div>
+                                        <div class="text-sm text-gray-600">Quick digital payments</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Recent Transactions -->
+                            <div class="mb-8">
+                                <h4 class="text-lg font-semibold mb-4">&#x1F4CA; Recent Transactions</h4>
+                                <div id="recentTransactions" class="space-y-3">
+                                    <div class="text-center text-gray-500 py-8">
+                                        <div class="text-4xl mb-2">&#x1F4B8;</div>
+                                        <p>No transactions yet</p>
+                                        <p class="text-sm">Complete projects to start earning</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Share Profile -->
+                        <div class="mt-12 bg-white p-8 rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-6 text-center">&#x1F310; Share Your Verified Profile</h3>
+                            <div class="mb-6 text-center">
+                                <div class="bg-gray-100 p-4 rounded-lg inline-block">
+                                    <div class="text-sm text-gray-600 mb-2">Your Profile URL:</div>
+                                    <div class="font-mono text-blue-600" id="profileURL">https://skillchain.io/profile/Onkargarde</div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap justify-center gap-4">
+                                <button onclick="shareProfile('email')" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                                    &#x1F4E7; Share via Email
+                                </button>
+                                <button onclick="shareProfile('linkedin')" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors">
+                                    &#x1F4BC; Share on LinkedIn
+                                </button>
+                                <button onclick="shareProfile('github')" class="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-900 transition-colors">
+                                    &#x1F419; Share on GitHub
+                                </button>
+                                <button onclick="copyProfileLink()" class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors">
+                                    &#x1F4CB; Copy Profile Link
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Employers Page -->
+        <div id="employersPage" class="page">
+            <section class="py-16">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-bold mb-4 text-gray-800">For Employers</h2>
+                        <p class="text-xl text-gray-600">Hire verified talent with blockchain-backed credentials</p>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                        <!-- Candidate Verification -->
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                                <span class="text-3xl mr-3">&#x1F50D;</span>
+                                Verify Candidates
+                            </h3>
+                            <p class="text-gray-600 mb-6">Instantly verify any candidate's skills using their wallet address or profile link</p>
+
+                            <div class="space-y-4">
+                                <input type="text" id="candidateWallet" placeholder="Enter candidate's wallet address or profile link" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <button id="verifyCandidate" class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors">
+                                    &#x1F517; Verify on Blockchain
+                                </button>
+                            </div>
+
+                            <div id="verificationResult" class="mt-6 p-4 bg-gray-50 rounded-lg hidden">
+                            </div>
+
+                            <!-- Sample Verification -->
+                            <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                                <h4 class="font-semibold mb-3 text-blue-800">Try Sample Verification</h4>
+                                <button onclick="showSampleVerification()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                                    View Sample Profile
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Project Posting -->
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                                <span class="text-3xl mr-3">&#x1F4DD;</span>
+                                Post Project
+                            </h3>
+                            <p class="text-gray-600 mb-6">Create smart contract-based projects with automatic payment release</p>
+
+                            <div class="space-y-4">
+                                <input type="text" id="projectTitle" placeholder="Project Title" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+
+                                <select id="projectCategory" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="">Select Category</option>
+                                    <option value="tech">Technology</option>
+                                    <option value="design">Design</option>
+                                    <option value="marketing">Marketing</option>
+                                    <option value="finance">Finance</option>
+                                    <option value="medical">Medical</option>
+                                </select>
+
+                                <textarea id="projectDescription" placeholder="Project Description" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <input type="number" id="projectBudget" placeholder="Budget (ETH)" step="0.01" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <input type="date" id="projectDeadline" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+
+                                <div class="flex items-center space-x-2">
+                                    <input type="checkbox" id="escrowPayment" class="rounded">
+                                    <label for="escrowPayment" class="text-sm text-gray-600">Use smart contract escrow</label>
+                                </div>
+
+                                <button id="postProject" class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+                                    &#x1F680; Post Project
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Posted Projects -->
+                    <div class="mt-16">
+                        <h3 class="text-2xl font-bold mb-8 text-center">Recent Projects</h3>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projectsList">
+                        </div>
+                    </div>
+
+                    <!-- Employer Benefits -->
+                    <div class="mt-16 bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold mb-8 text-center">Why Choose SkillChain?</h3>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="text-center">
+                                <div class="text-4xl mb-4">&#x1F6E1;&#xFE0F;</div>
+                                <h4 class="text-lg font-semibold mb-2">Zero Fake Profiles</h4>
+                                <p class="text-gray-600">Blockchain verification eliminates fake credentials and profiles</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl mb-4">&#x26A1;</div>
+                                <h4 class="text-lg font-semibold mb-2">Instant Verification</h4>
+                                <p class="text-gray-600">Verify any candidate's skills in seconds, not days</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl mb-4">&#x1F4B0;</div>
+                                <h4 class="text-lg font-semibold mb-2">Smart Payments</h4>
+                                <p class="text-gray-600">Automated escrow and milestone-based payments</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-xl shadow-2xl max-w-md w-full mx-4 relative">
+            <h3 class="text-2xl font-bold mb-6 text-center">Login to SkillChain</h3>
+            <form id="loginForm" class="space-y-4">
+                <input type="email" id="loginEmail" placeholder="Email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <input type="password" id="loginPassword" placeholder="Password" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">Login</button>
+            </form>
+            <div class="mt-6 text-center">
+                <button id="connectWallet" class="w-full bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors">Connect MetaMask Wallet</button>
+            </div>
+            <button id="closeLogin" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">&#x2715;</button>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-xl shadow-2xl max-w-md w-full mx-4 relative">
+            <h3 class="text-2xl font-bold mb-6 text-center">Register on SkillChain</h3>
+            <form id="registerForm" class="space-y-4">
+                <input type="text" id="registerName" placeholder="Full Name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <input type="email" id="registerEmail" placeholder="Email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <input type="password" id="registerPassword" placeholder="Password" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <input type="text" id="registerEducation" placeholder="Education Background" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <textarea id="registerSkills" placeholder="Your Skills (comma separated)" rows="3" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">Register</button>
+            </form>
+            <button id="closeRegister" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">&#x2715;</button>
+        </div>
+    </div>
+
+    <!-- Test Modal -->
+    <div id="testModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-xl shadow-2xl max-w-2xl w-full mx-4 max-h-96 overflow-y-auto relative">
+            <h3 class="text-2xl font-bold mb-6 text-center">AI Skill Assessment</h3>
+            <div id="testContent">
+                <div class="mb-6">
+                    <h4 class="text-lg font-semibold mb-3">Question 1 of 5</h4>
+                    <p class="mb-4">What is the primary purpose of version control in software development?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q1" value="a" class="mr-2">
+                            <span>To compile code faster</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q1" value="b" class="mr-2">
+                            <span>To track changes and collaborate on code</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q1" value="c" class="mr-2">
+                            <span>To debug applications</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <button id="prevQuestion" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors" disabled>Previous</button>
+                    <button id="nextQuestion" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">Next</button>
+                </div>
+            </div>
+            <button id="closeTest" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">&#x2715;</button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-xl shadow-2xl max-w-md w-full mx-4 text-center">
+            <div class="text-6xl mb-4">&#x1F389;</div>
+            <h3 class="text-2xl font-bold mb-4">Congratulations!</h3>
+            <p id="successMessage" class="text-gray-600 mb-6"></p>
+            <button id="closeSuccess" class="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">Continue</button>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
